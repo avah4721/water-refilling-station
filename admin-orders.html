@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tubigan - Admin Orders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-nunito bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Admin Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white hidden md:block">
+      <div class="p-6 border-b border-gray-700">
+        <div class="flex items-center space-x-2">
+          <span class="text-2xl">💧</span>
+          <span class="text-xl font-extrabold">TUBIGAN <span class="text-amber-400">ADMIN</span></span>
+        </div>
+      </div>
+      <nav class="p-4 space-y-2">
+        <a href="admin-dashboard.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
+          <span>📊</span><span>Dashboard</span>
+        </a>
+        <a href="admin-customers.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
+          <span>👥</span><span>Customers</span>
+        </a>
+        <a href="admin-orders.html" class="flex items-center space-x-3 p-3 bg-gray-800 text-amber-400 rounded-lg font-semibold">
+          <span>📦</span><span>Orders</span>
+        </a>
+        <a href="admin-payments.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
+          <span>💳</span><span>Payments</span>
+        </a>
+        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-red-900 hover:text-red-400 rounded-lg transition">
+          <span>🚪</span><span>Logout</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-extrabold text-gray-900">Orders</h1>
+          <p class="text-gray-600 mt-1">Manage and track all customer orders</p>
+        </div>
+        <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+          + New Order
+        </button>
+      </div>
+
+      <!-- Order Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">All Orders</p>
+          <p class="text-2xl font-extrabold text-gray-900">156</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Pending</p>
+          <p class="text-2xl font-extrabold text-amber-500">12</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Processing</p>
+          <p class="text-2xl font-extrabold text-blue-500">8</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Out for Delivery</p>
+          <p class="text-2xl font-extrabold text-purple-500">5</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Delivered</p>
+          <p class="text-2xl font-extrabold text-green-500">131</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="bg-white rounded-xl p-4 shadow-md mb-6 flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <input type="text" placeholder="Search by Order ID or Customer..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>All Status</option>
+          <option>Pending</option>
+          <option>Processing</option>
+          <option>Out for Delivery</option>
+          <option>Delivered</option>
+          <option>Cancelled</option>
+        </select>
+        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>All Types</option>
+          <option>Delivery</option>
+          <option>Pickup</option>
+        </select>
+        <input type="date" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Orders Table -->
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b">
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Order ID</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Customer</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Gallons</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Type</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Date</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Amount</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Status</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-001</td>
+                <td class="py-3 px-4">Maria Santos</td>
+                <td class="py-3 px-4 font-semibold">3</td>
+                <td class="py-3 px-4"><span class="text-blue-600">🚚 Delivery</span></td>
+                <td class="py-3 px-4 text-gray-600">May 13, 2025</td>
+                <td class="py-3 px-4 font-semibold">₱90</td>
+                <td class="py-3 px-4">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option>Delivered</option>
+                    <option>Pending</option>
+                    <option>Processing</option>
+                    <option>Out for Delivery</option>
+                    <option>Cancelled</option>
+                  </select>
+                </td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm">View</button>
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-002</td>
+                <td class="py-3 px-4">Pedro Cruz</td>
+                <td class="py-3 px-4 font-semibold">2</td>
+                <td class="py-3 px-4"><span class="text-amber-600">🏪 Pickup</span></td>
+                <td class="py-3 px-4 text-gray-600">May 13, 2025</td>
+                <td class="py-3 px-4 font-semibold">₱50</td>
+                <td class="py-3 px-4">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <option>Processing</option>
+                    <option>Pending</option>
+                    <option>Out for Delivery</option>
+                    <option>Delivered</option>
+                    <option>Cancelled</option>
+                  </select>
+                </td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm">View</button>
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-003</td>
+                <td class="py-3 px-4">Ana Reyes</td>
+                <td class="py-3 px-4 font-semibold">5</td>
+                <td class="py-3 px-4"><span class="text-blue-600">🚚 Delivery</span></td>
+                <td class="py-3 px-4 text-gray-600">May 12, 2025</td>
+                <td class="py-3 px-4 font-semibold">₱150</td>
+                <td class="py-3 px-4">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <option>Out for Delivery</option>
+                    <option>Pending</option>
+                    <option>Processing</option>
+                    <option>Delivered</option>
+                    <option>Cancelled</option>
+                  </select>
+                </td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm">View</button>
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-004</td>
+                <td class="py-3 px-4">Luis Gomez</td>
+                <td class="py-3 px-4 font-semibold">1</td>
+                <td class="py-3 px-4"><span class="text-amber-600">🏪 Pickup</span></td>
+                <td class="py-3 px-4 text-gray-600">May 11, 2025</td>
+                <td class="py-3 px-4 font-semibold">₱25</td>
+                <td class="py-3 px-4">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <option>Delivered</option>
+                    <option>Pending</option>
+                    <option>Processing</option>
+                    <option>Out for Delivery</option>
+                    <option>Cancelled</option>
+                  </select>
+                </td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-between items-center mt-6">
+          <p class="text-gray-600 text-sm">Showing 1-4 of 156 orders</p>
+          <div class="flex space-x-2">
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Previous</button>
+            <button class="px-3 py-1 bg-blue-600 text-white rounded">1</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">2</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">3</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Next</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

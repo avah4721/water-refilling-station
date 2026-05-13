@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tubigan - My Orders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-nunito bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-xl hidden md:block">
+      <div class="p-6 border-b">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+            <span class="text-white">💧</span>
+          </div>
+          <span class="text-xl font-extrabold text-blue-600">TUBIGAN</span>
+        </div>
+      </div>
+      <nav class="p-4 space-y-2">
+        <a href="dashboard.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
+          <span>📊</span><span>Dashboard</span>
+        </a>
+        <a href="customer-orders.html" class="flex items-center space-x-3 p-3 bg-blue-50 text-blue-600 rounded-lg font-semibold">
+          <span>📦</span><span>Orders</span>
+        </a>
+        <a href="payment.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
+          <span>💳</span><span>Payment</span>
+        </a>
+        <a href="customer-profile.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
+          <span>👤</span><span>Profile</span>
+        </a>
+        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition">
+          <span>🚪</span><span>Logout</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-extrabold text-gray-900">My Orders</h1>
+          <p class="text-gray-600 mt-1">Track and manage your water orders</p>
+        </div>
+        <a href="payment.html" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+          + Place New Order
+        </a>
+      </div>
+
+      <!-- Order Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Total Orders</p>
+          <p class="text-2xl font-extrabold text-gray-900">28</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Pending</p>
+          <p class="text-2xl font-extrabold text-amber-500">3</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Processing</p>
+          <p class="text-2xl font-extrabold text-blue-500">2</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+          <p class="text-gray-500 text-sm">Delivered</p>
+          <p class="text-2xl font-extrabold text-green-500">23</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="bg-white rounded-xl p-4 shadow-md mb-6 flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <input type="text" placeholder="Search orders..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>All Status</option>
+          <option>Pending</option>
+          <option>Confirmed</option>
+          <option>Processing</option>
+          <option>Out for Delivery</option>
+          <option>Delivered</option>
+          <option>Cancelled</option>
+        </select>
+        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>All Types</option>
+          <option>Delivery</option>
+          <option>Pickup</option>
+          <option>Subscription</option>
+        </select>
+      </div>
+
+      <!-- Orders List -->
+      <div class="space-y-4">
+        <!-- Order 1 -->
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex flex-col md:flex-row justify-between mb-4">
+            <div>
+              <div class="flex items-center space-x-3 mb-2">
+                <span class="font-mono text-sm text-blue-600 font-semibold">#ORD-028</span>
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Delivered</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900">3 Gallons - Delivery</h3>
+              <p class="text-gray-500 text-sm">Ordered on May 10, 2025 at 2:30 PM</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+              <p class="text-2xl font-extrabold text-gray-900">₱90</p>
+              <p class="text-sm text-gray-500">Paid via GCash</p>
+            </div>
+          </div>
+          <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
+            <div class="space-y-1">
+              <p>🚚 Delivery Address: 123 Rizal St., Manila</p>
+              <p>📅 Delivered: May 10, 2025 at 4:15 PM</p>
+            </div>
+            <div class="flex space-x-3 mt-3 md:mt-0">
+              <button class="text-blue-600 hover:underline font-semibold">View Details</button>
+              <button class="text-amber-600 hover:underline font-semibold">Reorder</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order 2 -->
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex flex-col md:flex-row justify-between mb-4">
+            <div>
+              <div class="flex items-center space-x-3 mb-2">
+                <span class="font-mono text-sm text-blue-600 font-semibold">#ORD-027</span>
+                <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs font-semibold">Processing</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900">2 Gallons - Pickup</h3>
+              <p class="text-gray-500 text-sm">Ordered on May 8, 2025 at 10:00 AM</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+              <p class="text-2xl font-extrabold text-gray-900">₱50</p>
+              <p class="text-sm text-gray-500">Paid via Maya</p>
+            </div>
+          </div>
+          <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
+            <div class="space-y-1">
+              <p>🏪 Pickup at: Tubigan Main Station</p>
+              <p>⏰ Estimated ready: May 9, 2025</p>
+            </div>
+            <div class="flex space-x-3 mt-3 md:mt-0">
+              <button class="text-blue-600 hover:underline font-semibold">View Details</button>
+              <button class="text-red-500 hover:underline font-semibold">Cancel Order</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order 3 -->
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex flex-col md:flex-row justify-between mb-4">
+            <div>
+              <div class="flex items-center space-x-3 mb-2">
+                <span class="font-mono text-sm text-blue-600 font-semibold">#ORD-026</span>
+                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-semibold">Confirmed</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900">5 Gallons - Subscription</h3>
+              <p class="text-gray-500 text-sm">Ordered on May 5, 2025 at 8:00 AM</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+              <p class="text-2xl font-extrabold text-gray-900">₱150</p>
+              <p class="text-sm text-gray-500">Paid via Bank Transfer</p>
+            </div>
+          </div>
+          <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
+            <div class="space-y-1">
+              <p>🔄 Subscription: Weekly delivery every Monday</p>
+              <p>📅 Next delivery: May 19, 2025</p>
+            </div>
+            <div class="flex space-x-3 mt-3 md:mt-0">
+              <button class="text-blue-600 hover:underline font-semibold">View Details</button>
+              <button class="text-amber-600 hover:underline font-semibold">Reorder</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order 4 -->
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex flex-col md:flex-row justify-between mb-4">
+            <div>
+              <div class="flex items-center space-x-3 mb-2">
+                <span class="font-mono text-sm text-blue-600 font-semibold">#ORD-025</span>
+                <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-semibold">Cancelled</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900">1 Gallon - Pickup</h3>
+              <p class="text-gray-500 text-sm">Ordered on May 3, 2025 at 3:45 PM</p>
+            </div>
+            <div class="text-right mt-4 md:mt-0">
+              <p class="text-2xl font-extrabold text-gray-400 line-through">₱25</p>
+              <p class="text-sm text-red-500">Refunded</p>
+            </div>
+          </div>
+          <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
+            <div class="space-y-1">
+              <p>❌ Cancelled on May 3, 2025</p>
+              <p>💬 Reason: Changed mind</p>
+            </div>
+            <div class="flex space-x-3 mt-3 md:mt-0">
+              <button class="text-blue-600 hover:underline font-semibold">View Details</button>
+              <button class="text-amber-600 hover:underline font-semibold">Reorder</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex justify-between items-center mt-8">
+        <p class="text-gray-600 text-sm">Showing 1-4 of 28 orders</p>
+        <div class="flex space-x-2">
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Previous</button>
+          <button class="px-3 py-1 bg-blue-600 text-white rounded">1</button>
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">2</button>
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">3</button>
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Next</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

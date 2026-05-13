@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tubigan - Admin Payments</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-nunito bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Admin Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white hidden md:block">
+      <div class="p-6 border-b border-gray-700">
+        <div class="flex items-center space-x-2">
+          <span class="text-2xl">💧</span>
+          <span class="text-xl font-extrabold">TUBIGAN <span class="text-amber-400">ADMIN</span></span>
+        </div>
+      </div>
+      <nav class="p-4 space-y-2">
+        <a href="admin-dashboard.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
+          <span>📊</span><span>Dashboard</span>
+        </a>
+        <a href="admin-customers.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
+          <span>👥</span><span>Customers</span>
+        </a>
+        <a href="admin-orders.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
+          <span>📦</span><span>Orders</span>
+        </a>
+        <a href="admin-payments.html" class="flex items-center space-x-3 p-3 bg-gray-800 text-amber-400 rounded-lg font-semibold">
+          <span>💳</span><span>Payments</span>
+        </a>
+        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-red-900 hover:text-red-400 rounded-lg transition">
+          <span>🚪</span><span>Logout</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-extrabold text-gray-900">Payments</h1>
+          <p class="text-gray-600 mt-1">Track and manage all payment transactions</p>
+        </div>
+        <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+          Export Report
+        </button>
+      </div>
+
+      <!-- Payment Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-500 text-sm">Total Revenue</p>
+              <p class="text-3xl font-extrabold text-blue-600">₱45,250</p>
+            </div>
+            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">💰</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-500 text-sm">Today's Earnings</p>
+              <p class="text-3xl font-extrabold text-green-600">₱3,450</p>
+            </div>
+            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">📈</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-500 text-sm">Pending Payments</p>
+              <p class="text-3xl font-extrabold text-amber-500">₱1,200</p>
+            </div>
+            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">⏳</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-gray-500 text-sm">Transactions</p>
+              <p class="text-3xl font-extrabold text-purple-600">342</p>
+            </div>
+            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+              <span class="text-2xl">📋</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Methods Breakdown -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white rounded-xl p-6 shadow-md text-center">
+          <div class="text-4xl mb-3">📱</div>
+          <h3 class="font-bold text-gray-900">GCash</h3>
+          <p class="text-2xl font-extrabold text-blue-600 mt-2">₱18,500</p>
+          <p class="text-gray-500 text-sm">45% of total</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md text-center">
+          <div class="text-4xl mb-3">💳</div>
+          <h3 class="font-bold text-gray-900">Maya</h3>
+          <p class="text-2xl font-extrabold text-amber-500 mt-2">₱12,300</p>
+          <p class="text-gray-500 text-sm">30% of total</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md text-center">
+          <div class="text-4xl mb-3">🏦</div>
+          <h3 class="font-bold text-gray-900">Bank Transfer</h3>
+          <p class="text-2xl font-extrabold text-green-600 mt-2">₱10,250</p>
+          <p class="text-gray-500 text-sm">25% of total</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="bg-white rounded-xl p-4 shadow-md mb-6 flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <input type="text" placeholder="Search by Reference No. or Customer..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>All Methods</option>
+          <option>GCash</option>
+          <option>Maya</option>
+          <option>Bank Transfer</option>
+          <option>Cash</option>
+        </select>
+        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>All Status</option>
+          <option>Completed</option>
+          <option>Pending</option>
+          <option>Failed</option>
+          <option>Refunded</option>
+        </select>
+        <input type="date" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Payments Table -->
+      <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b">
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Reference No.</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Customer</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Method</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Amount</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Date</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Status</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">TUB-2025-0513-001</td>
+                <td class="py-3 px-4">Maria Santos</td>
+                <td class="py-3 px-4">
+                  <span class="flex items-center space-x-1">
+                    <span>📱</span><span>GCash</span>
+                  </span>
+                </td>
+                <td class="py-3 px-4 font-semibold text-green-600">₱90</td>
+                <td class="py-3 px-4 text-gray-600">May 13, 2025</td>
+                <td class="py-3 px-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Completed</span></td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm">View</button>
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">TUB-2025-0513-002</td>
+                <td class="py-3 px-4">Pedro Cruz</td>
+                <td class="py-3 px-4">
+                  <span class="flex items-center space-x-1">
+                    <span>💳</span><span>Maya</span>
+                  </span>
+                </td>
+                <td class="py-3 px-4 font-semibold text-green-600">₱50</td>
+                <td class="py-3 px-4 text-gray-600">May 13, 2025</td>
+                <td class="py-3 px-4"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs font-semibold">Pending</span></td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm mr-2">Verify</button>
+                  <button class="text-red-500 hover:underline text-sm">Reject</button>
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">TUB-2025-0512-003</td>
+                <td class="py-3 px-4">Ana Reyes</td>
+                <td class="py-3 px-4">
+                  <span class="flex items-center space-x-1">
+                    <span>🏦</span><span>Bank Transfer</span>
+                  </span>
+                </td>
+                <td class="py-3 px-4 font-semibold text-green-600">₱150</td>
+                <td class="py-3 px-4 text-gray-600">May 12, 2025</td>
+                <td class="py-3 px-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Completed</span></td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm">View</button>
+                </td>
+              </tr>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">TUB-2025-0511-004</td>
+                <td class="py-3 px-4">Luis Gomez</td>
+                <td class="py-3 px-4">
+                  <span class="flex items-center space-x-1">
+                    <span>📱</span><span>GCash</span>
+                  </span>
+                </td>
+                <td class="py-3 px-4 font-semibold text-red-600">₱25</td>
+                <td class="py-3 px-4 text-gray-600">May 11, 2025</td>
+                <td class="py-3 px-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-semibold">Refunded</span></td>
+                <td class="py-3 px-4">
+                  <button class="text-blue-600 hover:underline text-sm">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-between items-center mt-6">
+          <p class="text-gray-600 text-sm">Showing 1-4 of 342 transactions</p>
+          <div class="flex space-x-2">
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Previous</button>
+            <button class="px-3 py-1 bg-blue-600 text-white rounded">1</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">2</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">3</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Next</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
