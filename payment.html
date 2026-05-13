@@ -3,67 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tubigan - Login / Register</title>
+  <title>Tubigan - Payment</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="font-nunito bg-gradient-to-br from-blue-50 to-white min-h-screen flex items-center justify-center p-4 sm:p-6">
-  <div class="w-full max-w-md">
-    
-    <div class="text-center mb-6 sm:mb-8">
-      <div class="inline-flex items-center space-x-2">
-        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full flex items-center justify-center">
-          <span class="text-white text-2xl sm:text-3xl">💧</span>
-        </div>
-        <span class="text-2xl sm:text-3xl font-extrabold text-blue-600">TUBIGAN</span>
-      </div>
+<body class="font-nunito bg-gray-100 min-h-screen flex items-center justify-center p-4 sm:p-6">
+  <div class="w-full max-w-lg">
+    <div class="text-center mb-6">
+      <a href="dashboard.html" class="text-blue-600 hover:underline font-semibold text-sm sm:text-base">Back to Dashboard</a>
     </div>
 
     <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
-      <div class="flex border-b border-gray-200 mb-6 sm:mb-8">
-        <button id="loginTab" class="w-1/2 py-2 sm:py-3 text-center font-bold text-base sm:text-lg text-blue-600 border-b-2 border-blue-600 transition">Login</button>
-        <button id="registerTab" class="w-1/2 py-2 sm:py-3 text-center font-bold text-base sm:text-lg text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition">Register</button>
+      <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6">💳 Online Payment</h2>
+
+      <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+        <label class="flex items-center p-3 sm:p-4 border-2 border-blue-600 rounded-xl cursor-pointer bg-blue-50 transition">
+          <input type="radio" name="payment" checked class="w-5 h-5 text-blue-600">
+          <span class="ml-3 font-semibold text-gray-800 text-sm sm:text-base">GCash</span>
+        </label>
+        <label class="flex items-center p-3 sm:p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-amber-400 transition">
+          <input type="radio" name="payment" class="w-5 h-5 text-amber-500">
+          <span class="ml-3 font-semibold text-gray-800 text-sm sm:text-base">Maya</span>
+        </label>
+        <label class="flex items-center p-3 sm:p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-amber-400 transition">
+          <input type="radio" name="payment" class="w-5 h-5 text-amber-500">
+          <span class="ml-3 font-semibold text-gray-800 text-sm sm:text-base">Bank Transfer</span>
+        </label>
       </div>
 
-      <form id="loginForm" class="space-y-4 sm:space-y-5">
-        <div>
-          <label class="block text-gray-700 font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Email Address</label>
-          <input type="email" placeholder="you@example.com" class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-        </div>
-        <div>
-          <label class="block text-gray-700 font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Password</label>
-          <input type="password" placeholder="••••••••" class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-        </div>
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:bg-blue-700 transition shadow-lg mt-2 sm:mt-0">Sign In</button>
-      </form>
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Amount (₱)</label>
+        <input type="number" value="250" class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base sm:text-lg font-bold">
+      </div>
 
-      <form id="registerForm" class="space-y-4 sm:space-y-5 hidden">
-        <div>
-          <label class="block text-gray-700 font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Full Name</label>
-          <input type="text" placeholder="Juan Dela Cruz" class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-        </div>
-        <div>
-          <label class="block text-gray-700 font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Email Address</label>
-          <input type="email" placeholder="you@example.com" class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-        </div>
-        <div>
-          <label class="block text-gray-700 font-semibold mb-1 sm:mb-2 text-sm sm:text-base">Password</label>
-          <input type="password" placeholder="••••••••" class="w-full px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-        </div>
-        <button type="submit" class="w-full bg-amber-500 text-white py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:bg-amber-600 transition shadow-lg mt-2 sm:mt-0">Create Account</button>
-      </form>
+      <div class="mb-6 p-3 sm:p-4 bg-amber-50 rounded-xl border border-amber-200">
+        <p class="text-xs sm:text-sm text-gray-600">Reference Number</p>
+        <p class="text-lg sm:text-2xl font-mono font-bold text-amber-600 break-all">TUB-2025-0513-001</p>
+      </div>
 
-      <p class="text-center text-gray-500 mt-6 text-sm">
-        <a href="admin-login.html" class="text-blue-600 hover:underline font-semibold">Admin? Login here</a>
-      </p>
+      <button id="payButton" class="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:bg-blue-700 transition shadow-lg">
+        Pay Now
+      </button>
     </div>
-
-    <p class="text-center mt-6">
-      <a href="index.html" class="text-blue-600 hover:underline font-semibold text-sm sm:text-base">Back to Home</a>
-    </p>
   </div>
 
-  <script src="js/auth.js"></script>
+  <script src="js/payment.js"></script>
 </body>
 </html>
