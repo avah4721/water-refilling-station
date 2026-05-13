@@ -9,16 +9,23 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="font-nunito bg-gray-100">
-  <div class="flex h-screen">
-    <!-- Admin Sidebar -->
-    <aside class="w-64 bg-gray-900 text-white hidden md:block">
-      <div class="p-6 border-b border-gray-700">
+  <div class="flex h-screen overflow-hidden">
+    
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden transition-opacity"></div>
+
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col h-full">
+      <div class="p-6 border-b border-gray-700 flex justify-between items-center">
         <div class="flex items-center space-x-2">
           <span class="text-2xl">💧</span>
           <span class="text-xl font-extrabold">TUBIGAN <span class="text-amber-400">ADMIN</span></span>
         </div>
+        <button id="close-sidebar-btn" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
-      <nav class="p-4 space-y-2">
+      <nav class="p-4 space-y-2 flex-1 overflow-y-auto">
         <a href="admin-dashboard.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
           <span>📊</span><span>Dashboard</span>
         </a>
@@ -31,28 +38,33 @@
         <a href="admin-payments.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
           <span>💳</span><span>Payments</span>
         </a>
-        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-red-900 hover:text-red-400 rounded-lg transition">
+        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-red-900 hover:text-red-400 rounded-lg transition mt-8">
           <span>🚪</span><span>Logout</span>
         </a>
       </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto p-8">
-      <!-- Header -->
-      <div class="flex justify-between items-center mb-8">
-        <div>
-          <h1 class="text-3xl font-extrabold text-gray-900">Orders</h1>
-          <p class="text-gray-600 mt-1">Manage and track all customer orders</p>
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 min-w-0">
+      
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none flex-shrink-0">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Orders</h1>
+            <p class="text-sm sm:text-base text-gray-600 mt-1">Manage and track all customer orders</p>
+          </div>
         </div>
-        <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+        <button class="w-full sm:w-auto bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition whitespace-nowrap">
           + New Order
         </button>
       </div>
 
-      <!-- Order Stats -->
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-        <div class="bg-white rounded-xl p-4 shadow-md text-center">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 md:mb-8">
+        <div class="bg-white rounded-xl p-4 shadow-md text-center col-span-2 sm:col-span-1 lg:col-span-1">
           <p class="text-gray-500 text-sm">All Orders</p>
           <p class="text-2xl font-extrabold text-gray-900">156</p>
         </div>
@@ -74,53 +86,53 @@
         </div>
       </div>
 
-      <!-- Filters -->
       <div class="bg-white rounded-xl p-4 shadow-md mb-6 flex flex-col md:flex-row gap-4">
         <div class="flex-1">
           <input type="text" placeholder="Search by Order ID or Customer..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>All Status</option>
-          <option>Pending</option>
-          <option>Processing</option>
-          <option>Out for Delivery</option>
-          <option>Delivered</option>
-          <option>Cancelled</option>
-        </select>
-        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>All Types</option>
-          <option>Delivery</option>
-          <option>Pickup</option>
-        </select>
-        <input type="date" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option>All Status</option>
+            <option>Pending</option>
+            <option>Processing</option>
+            <option>Out for Delivery</option>
+            <option>Delivered</option>
+            <option>Cancelled</option>
+          </select>
+          <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option>All Types</option>
+            <option>Delivery</option>
+            <option>Pickup</option>
+          </select>
+          <input type="date" class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
       </div>
 
-      <!-- Orders Table -->
-      <div class="bg-white rounded-xl p-6 shadow-md">
-        <div class="overflow-x-auto">
-          <table class="w-full">
+      <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md overflow-hidden">
+        <div class="overflow-x-auto w-full pb-4">
+          <table class="w-full min-w-[900px]">
             <thead>
               <tr class="border-b">
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Order ID</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Customer</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Gallons</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Type</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Date</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Amount</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Status</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Actions</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Order ID</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Customer</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Gallons</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Type</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Date</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Amount</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Status</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-001</td>
-                <td class="py-3 px-4">Maria Santos</td>
-                <td class="py-3 px-4 font-semibold">3</td>
-                <td class="py-3 px-4"><span class="text-blue-600">🚚 Delivery</span></td>
-                <td class="py-3 px-4 text-gray-600">May 13, 2025</td>
-                <td class="py-3 px-4 font-semibold">₱90</td>
-                <td class="py-3 px-4">
-                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold whitespace-nowrap">#ORD-001</td>
+                <td class="py-3 px-4 whitespace-nowrap">Maria Santos</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">3</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="text-blue-600">🚚 Delivery</span></td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">May 13, 2026</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">₱90</td>
+                <td class="py-3 px-4 whitespace-nowrap">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
                     <option>Delivered</option>
                     <option>Pending</option>
                     <option>Processing</option>
@@ -128,19 +140,19 @@
                     <option>Cancelled</option>
                   </select>
                 </td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline text-sm">View</button>
                 </td>
               </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-002</td>
-                <td class="py-3 px-4">Pedro Cruz</td>
-                <td class="py-3 px-4 font-semibold">2</td>
-                <td class="py-3 px-4"><span class="text-amber-600">🏪 Pickup</span></td>
-                <td class="py-3 px-4 text-gray-600">May 13, 2025</td>
-                <td class="py-3 px-4 font-semibold">₱50</td>
-                <td class="py-3 px-4">
-                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold whitespace-nowrap">#ORD-002</td>
+                <td class="py-3 px-4 whitespace-nowrap">Pedro Cruz</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">2</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="text-amber-600">🏪 Pickup</span></td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">May 13, 2026</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">₱50</td>
+                <td class="py-3 px-4 whitespace-nowrap">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 bg-white">
                     <option>Processing</option>
                     <option>Pending</option>
                     <option>Out for Delivery</option>
@@ -148,19 +160,19 @@
                     <option>Cancelled</option>
                   </select>
                 </td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline text-sm">View</button>
                 </td>
               </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-003</td>
-                <td class="py-3 px-4">Ana Reyes</td>
-                <td class="py-3 px-4 font-semibold">5</td>
-                <td class="py-3 px-4"><span class="text-blue-600">🚚 Delivery</span></td>
-                <td class="py-3 px-4 text-gray-600">May 12, 2025</td>
-                <td class="py-3 px-4 font-semibold">₱150</td>
-                <td class="py-3 px-4">
-                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold whitespace-nowrap">#ORD-003</td>
+                <td class="py-3 px-4 whitespace-nowrap">Ana Reyes</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">5</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="text-blue-600">🚚 Delivery</span></td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">May 12, 2026</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">₱150</td>
+                <td class="py-3 px-4 whitespace-nowrap">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white">
                     <option>Out for Delivery</option>
                     <option>Pending</option>
                     <option>Processing</option>
@@ -168,19 +180,19 @@
                     <option>Cancelled</option>
                   </select>
                 </td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline text-sm">View</button>
                 </td>
               </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold">#ORD-004</td>
-                <td class="py-3 px-4">Luis Gomez</td>
-                <td class="py-3 px-4 font-semibold">1</td>
-                <td class="py-3 px-4"><span class="text-amber-600">🏪 Pickup</span></td>
-                <td class="py-3 px-4 text-gray-600">May 11, 2025</td>
-                <td class="py-3 px-4 font-semibold">₱25</td>
-                <td class="py-3 px-4">
-                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 font-mono text-sm text-blue-600 font-semibold whitespace-nowrap">#ORD-004</td>
+                <td class="py-3 px-4 whitespace-nowrap">Luis Gomez</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">1</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="text-amber-600">🏪 Pickup</span></td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">May 11, 2026</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">₱25</td>
+                <td class="py-3 px-4 whitespace-nowrap">
+                  <select class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-white">
                     <option>Delivered</option>
                     <option>Pending</option>
                     <option>Processing</option>
@@ -188,7 +200,7 @@
                     <option>Cancelled</option>
                   </select>
                 </td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline text-sm">View</button>
                 </td>
               </tr>
@@ -196,21 +208,37 @@
           </table>
         </div>
 
-        <!-- Pagination -->
-        <div class="flex justify-between items-center mt-6">
+        <div class="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
           <p class="text-gray-600 text-sm">Showing 1-4 of 156 orders</p>
-          <div class="flex space-x-2">
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Previous</button>
-            <button class="px-3 py-1 bg-blue-600 text-white rounded">1</button>
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">2</button>
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">3</button>
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Next</button>
+          <div class="flex space-x-1 sm:space-x-2 w-full sm:w-auto justify-center sm:justify-end overflow-x-auto pb-2 sm:pb-0">
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 whitespace-nowrap text-sm sm:text-base">Previous</button>
+            <button class="px-3 py-1 bg-blue-600 text-white rounded text-sm sm:text-base">1</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 text-sm sm:text-base">2</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 text-sm sm:text-base">3</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 whitespace-nowrap text-sm sm:text-base">Next</button>
           </div>
         </div>
       </div>
     </main>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', toggleSidebar);
+      if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+      if (overlay) overlay.addEventListener('click', toggleSidebar);
+    });
+  </script>
   <script src="js/admin.js"></script>
 </body>
 </html>

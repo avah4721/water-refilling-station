@@ -9,16 +9,23 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="font-nunito bg-gray-100">
-  <div class="flex h-screen">
-    <!-- Admin Sidebar -->
-    <aside class="w-64 bg-gray-900 text-white hidden md:block">
-      <div class="p-6 border-b border-gray-700">
+  <div class="flex h-screen overflow-hidden">
+    
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden transition-opacity"></div>
+
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col h-full">
+      <div class="p-6 border-b border-gray-700 flex justify-between items-center">
         <div class="flex items-center space-x-2">
           <span class="text-2xl">💧</span>
           <span class="text-xl font-extrabold">TUBIGAN <span class="text-amber-400">ADMIN</span></span>
         </div>
+        <button id="close-sidebar-btn" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
-      <nav class="p-4 space-y-2">
+      <nav class="p-4 space-y-2 flex-1 overflow-y-auto">
         <a href="admin-dashboard.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
           <span>📊</span><span>Dashboard</span>
         </a>
@@ -26,32 +33,37 @@
           <span>👥</span><span>Customers</span>
         </a>
         <a href="admin-orders.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
-          <span>📦</span><span>Orders</span>
+          <span>📝</span><span>Orders</span>
         </a>
         <a href="admin-payments.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-gray-800 hover:text-amber-400 rounded-lg transition">
           <span>💳</span><span>Payments</span>
         </a>
-        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-red-900 hover:text-red-400 rounded-lg transition">
+        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-300 hover:bg-red-900 hover:text-red-400 rounded-lg transition mt-8">
           <span>🚪</span><span>Logout</span>
         </a>
       </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto p-8">
-      <!-- Header -->
-      <div class="flex justify-between items-center mb-8">
-        <div>
-          <h1 class="text-3xl font-extrabold text-gray-900">Customers</h1>
-          <p class="text-gray-600 mt-1">Manage all registered customers</p>
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 min-w-0">
+      
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Customers</h1>
+            <p class="text-sm sm:text-base text-gray-600 mt-1">Manage all registered customers</p>
+          </div>
         </div>
-        <button class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+        <button class="w-full sm:w-auto bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition whitespace-nowrap">
           + Add Customer
         </button>
       </div>
 
-      <!-- Stats -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
         <div class="bg-white rounded-xl p-6 shadow-md">
           <p class="text-gray-500 text-sm">Total Customers</p>
           <p class="text-3xl font-extrabold text-blue-600">128</p>
@@ -60,104 +72,104 @@
           <p class="text-gray-500 text-sm">Active This Month</p>
           <p class="text-3xl font-extrabold text-green-600">95</p>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="bg-white rounded-xl p-6 shadow-md sm:col-span-2 lg:col-span-1">
           <p class="text-gray-500 text-sm">New This Month</p>
           <p class="text-3xl font-extrabold text-amber-500">12</p>
         </div>
       </div>
 
-      <!-- Search & Filter -->
       <div class="bg-white rounded-xl p-4 shadow-md mb-6 flex flex-col md:flex-row gap-4">
         <div class="flex-1">
           <input type="text" placeholder="Search customers..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>All Status</option>
-          <option>Active</option>
-          <option>Inactive</option>
-        </select>
-        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>Sort by: Newest</option>
-          <option>Sort by: Name A-Z</option>
-          <option>Sort by: Most Orders</option>
-        </select>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+          </select>
+          <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option>Sort by: Newest</option>
+            <option>Sort by: Name A-Z</option>
+            <option>Sort by: Most Orders</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Customers Table -->
-      <div class="bg-white rounded-xl p-6 shadow-md">
-        <div class="overflow-x-auto">
-          <table class="w-full">
+      <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md overflow-hidden">
+        <div class="overflow-x-auto w-full pb-4">
+          <table class="w-full min-w-[800px]">
             <thead>
               <tr class="border-b">
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Customer</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Email</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Phone</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Total Orders</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Status</th>
-                <th class="text-left py-3 px-4 font-semibold text-gray-600">Actions</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Customer</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Email</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Phone</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Total Orders</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Status</th>
+                <th class="text-left py-3 px-4 font-semibold text-gray-600 whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">MS</div>
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 flex-shrink-0">MS</div>
                     <span class="font-semibold text-gray-900">Maria Santos</span>
                   </div>
                 </td>
-                <td class="py-3 px-4 text-gray-600">maria@email.com</td>
-                <td class="py-3 px-4 text-gray-600">+63 917 123 4567</td>
-                <td class="py-3 px-4 font-semibold">24</td>
-                <td class="py-3 px-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Active</span></td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">maria@email.com</td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">+63 917 123 4567</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">24</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Active</span></td>
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline mr-3">Edit</button>
                   <button class="text-red-500 hover:underline">Delete</button>
                 </td>
               </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center font-bold text-amber-600">PC</div>
+                    <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center font-bold text-amber-600 flex-shrink-0">PC</div>
                     <span class="font-semibold text-gray-900">Pedro Cruz</span>
                   </div>
                 </td>
-                <td class="py-3 px-4 text-gray-600">pedro@email.com</td>
-                <td class="py-3 px-4 text-gray-600">+63 928 765 4321</td>
-                <td class="py-3 px-4 font-semibold">18</td>
-                <td class="py-3 px-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Active</span></td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">pedro@email.com</td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">+63 928 765 4321</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">18</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Active</span></td>
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline mr-3">Edit</button>
                   <button class="text-red-500 hover:underline">Delete</button>
                 </td>
               </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">AR</div>
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600 flex-shrink-0">AR</div>
                     <span class="font-semibold text-gray-900">Ana Reyes</span>
                   </div>
                 </td>
-                <td class="py-3 px-4 text-gray-600">ana@email.com</td>
-                <td class="py-3 px-4 text-gray-600">+63 935 111 2233</td>
-                <td class="py-3 px-4 font-semibold">31</td>
-                <td class="py-3 px-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Active</span></td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">ana@email.com</td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">+63 935 111 2233</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">31</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Active</span></td>
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline mr-3">Edit</button>
                   <button class="text-red-500 hover:underline">Delete</button>
                 </td>
               </tr>
-              <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-4">
+              <tr class="border-b hover:bg-gray-50 transition">
+                <td class="py-3 px-4 whitespace-nowrap">
                   <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center font-bold text-gray-600">LG</div>
+                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center font-bold text-gray-600 flex-shrink-0">LG</div>
                     <span class="font-semibold text-gray-900">Luis Gomez</span>
                   </div>
                 </td>
-                <td class="py-3 px-4 text-gray-600">luis@email.com</td>
-                <td class="py-3 px-4 text-gray-600">+63 942 888 9999</td>
-                <td class="py-3 px-4 font-semibold">5</td>
-                <td class="py-3 px-4"><span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-semibold">Inactive</span></td>
-                <td class="py-3 px-4">
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">luis@email.com</td>
+                <td class="py-3 px-4 text-gray-600 whitespace-nowrap">+63 942 888 9999</td>
+                <td class="py-3 px-4 font-semibold whitespace-nowrap">5</td>
+                <td class="py-3 px-4 whitespace-nowrap"><span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-semibold">Inactive</span></td>
+                <td class="py-3 px-4 whitespace-nowrap">
                   <button class="text-blue-600 hover:underline mr-3">Edit</button>
                   <button class="text-red-500 hover:underline">Delete</button>
                 </td>
@@ -166,21 +178,39 @@
           </table>
         </div>
 
-        <!-- Pagination -->
-        <div class="flex justify-between items-center mt-6">
+        <div class="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
           <p class="text-gray-600 text-sm">Showing 1-4 of 128 customers</p>
-          <div class="flex space-x-2">
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Previous</button>
-            <button class="px-3 py-1 bg-blue-600 text-white rounded">1</button>
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">2</button>
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">3</button>
-            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Next</button>
+          <div class="flex space-x-1 sm:space-x-2 w-full sm:w-auto justify-center sm:justify-end overflow-x-auto pb-2 sm:pb-0">
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 whitespace-nowrap text-sm sm:text-base">Previous</button>
+            <button class="px-3 py-1 bg-blue-600 text-white rounded text-sm sm:text-base">1</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 text-sm sm:text-base">2</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 text-sm sm:text-base">3</button>
+            <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 whitespace-nowrap text-sm sm:text-base">Next</button>
           </div>
         </div>
       </div>
+      
     </main>
   </div>
 
   <script src="js/admin.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', toggleSidebar);
+      if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+      if (overlay) overlay.addEventListener('click', toggleSidebar);
+    });
+  </script>
 </body>
 </html>
