@@ -9,18 +9,23 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="font-nunito bg-gray-100">
-  <div class="flex h-screen">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-xl hidden md:block">
-      <div class="p-6 border-b">
+  <div class="flex h-screen overflow-hidden">
+    
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden transition-opacity"></div>
+
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col h-full">
+      <div class="p-6 border-b flex justify-between items-center">
         <div class="flex items-center space-x-2">
           <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
             <span class="text-white">💧</span>
           </div>
           <span class="text-xl font-extrabold text-blue-600">TUBIGAN</span>
         </div>
+        <button id="close-sidebar-btn" class="md:hidden text-gray-400 hover:text-blue-600 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
       </div>
-      <nav class="p-4 space-y-2">
+      <nav class="p-4 space-y-2 flex-1 overflow-y-auto">
         <a href="dashboard.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
           <span>📊</span><span>Dashboard</span>
         </a>
@@ -33,27 +38,30 @@
         <a href="customer-profile.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
           <span>👤</span><span>Profile</span>
         </a>
-        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition">
+        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition mt-8">
           <span>🚪</span><span>Logout</span>
         </a>
       </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto p-8">
-      <!-- Header -->
-      <div class="flex justify-between items-center mb-8">
-        <div>
-          <h1 class="text-3xl font-extrabold text-gray-900">My Orders</h1>
-          <p class="text-gray-600 mt-1">Track and manage your water orders</p>
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 min-w-0">
+      
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none flex-shrink-0">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">My Orders</h1>
+            <p class="text-sm sm:text-base text-gray-600 mt-1">Track and manage your water orders</p>
+          </div>
         </div>
-        <a href="payment.html" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+        <a href="payment.html" class="w-full sm:w-auto text-center bg-blue-600 text-white px-5 py-2 rounded-lg font-bold hover:bg-blue-700 transition whitespace-nowrap">
           + Place New Order
         </a>
       </div>
 
-      <!-- Order Stats -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6 md:mb-8">
         <div class="bg-white rounded-xl p-4 shadow-md text-center">
           <p class="text-gray-500 text-sm">Total Orders</p>
           <p class="text-2xl font-extrabold text-gray-900">28</p>
@@ -72,32 +80,32 @@
         </div>
       </div>
 
-      <!-- Filters -->
       <div class="bg-white rounded-xl p-4 shadow-md mb-6 flex flex-col md:flex-row gap-4">
         <div class="flex-1">
           <input type="text" placeholder="Search orders..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>All Status</option>
-          <option>Pending</option>
-          <option>Confirmed</option>
-          <option>Processing</option>
-          <option>Out for Delivery</option>
-          <option>Delivered</option>
-          <option>Cancelled</option>
-        </select>
-        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option>All Types</option>
-          <option>Delivery</option>
-          <option>Pickup</option>
-          <option>Subscription</option>
-        </select>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option>All Status</option>
+            <option>Pending</option>
+            <option>Confirmed</option>
+            <option>Processing</option>
+            <option>Out for Delivery</option>
+            <option>Delivered</option>
+            <option>Cancelled</option>
+          </select>
+          <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option>All Types</option>
+            <option>Delivery</option>
+            <option>Pickup</option>
+            <option>Subscription</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Orders List -->
       <div class="space-y-4">
-        <!-- Order 1 -->
-        <div class="bg-white rounded-xl p-6 shadow-md">
+        
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md">
           <div class="flex flex-col md:flex-row justify-between mb-4">
             <div>
               <div class="flex items-center space-x-3 mb-2">
@@ -107,25 +115,24 @@
               <h3 class="text-lg font-bold text-gray-900">3 Gallons - Delivery</h3>
               <p class="text-gray-500 text-sm">Ordered on May 10, 2025 at 2:30 PM</p>
             </div>
-            <div class="text-right mt-4 md:mt-0">
+            <div class="text-left md:text-right mt-3 md:mt-0">
               <p class="text-2xl font-extrabold text-gray-900">₱90</p>
               <p class="text-sm text-gray-500">Paid via GCash</p>
             </div>
           </div>
           <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
-            <div class="space-y-1">
+            <div class="space-y-1 mb-3 md:mb-0">
               <p>🚚 Delivery Address: 123 Rizal St., Manila</p>
               <p>📅 Delivered: May 10, 2025 at 4:15 PM</p>
             </div>
-            <div class="flex space-x-3 mt-3 md:mt-0">
+            <div class="flex space-x-3 items-end">
               <button class="text-blue-600 hover:underline font-semibold">View Details</button>
               <button class="text-amber-600 hover:underline font-semibold">Reorder</button>
             </div>
           </div>
         </div>
 
-        <!-- Order 2 -->
-        <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md">
           <div class="flex flex-col md:flex-row justify-between mb-4">
             <div>
               <div class="flex items-center space-x-3 mb-2">
@@ -135,25 +142,24 @@
               <h3 class="text-lg font-bold text-gray-900">2 Gallons - Pickup</h3>
               <p class="text-gray-500 text-sm">Ordered on May 8, 2025 at 10:00 AM</p>
             </div>
-            <div class="text-right mt-4 md:mt-0">
+            <div class="text-left md:text-right mt-3 md:mt-0">
               <p class="text-2xl font-extrabold text-gray-900">₱50</p>
               <p class="text-sm text-gray-500">Paid via Maya</p>
             </div>
           </div>
           <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
-            <div class="space-y-1">
+            <div class="space-y-1 mb-3 md:mb-0">
               <p>🏪 Pickup at: Tubigan Main Station</p>
               <p>⏰ Estimated ready: May 9, 2025</p>
             </div>
-            <div class="flex space-x-3 mt-3 md:mt-0">
+            <div class="flex space-x-3 items-end">
               <button class="text-blue-600 hover:underline font-semibold">View Details</button>
               <button class="text-red-500 hover:underline font-semibold">Cancel Order</button>
             </div>
           </div>
         </div>
 
-        <!-- Order 3 -->
-        <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md">
           <div class="flex flex-col md:flex-row justify-between mb-4">
             <div>
               <div class="flex items-center space-x-3 mb-2">
@@ -163,25 +169,24 @@
               <h3 class="text-lg font-bold text-gray-900">5 Gallons - Subscription</h3>
               <p class="text-gray-500 text-sm">Ordered on May 5, 2025 at 8:00 AM</p>
             </div>
-            <div class="text-right mt-4 md:mt-0">
+            <div class="text-left md:text-right mt-3 md:mt-0">
               <p class="text-2xl font-extrabold text-gray-900">₱150</p>
               <p class="text-sm text-gray-500">Paid via Bank Transfer</p>
             </div>
           </div>
           <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
-            <div class="space-y-1">
+            <div class="space-y-1 mb-3 md:mb-0">
               <p>🔄 Subscription: Weekly delivery every Monday</p>
               <p>📅 Next delivery: May 19, 2025</p>
             </div>
-            <div class="flex space-x-3 mt-3 md:mt-0">
+            <div class="flex space-x-3 items-end">
               <button class="text-blue-600 hover:underline font-semibold">View Details</button>
               <button class="text-amber-600 hover:underline font-semibold">Reorder</button>
             </div>
           </div>
         </div>
 
-        <!-- Order 4 -->
-        <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md">
           <div class="flex flex-col md:flex-row justify-between mb-4">
             <div>
               <div class="flex items-center space-x-3 mb-2">
@@ -191,17 +196,17 @@
               <h3 class="text-lg font-bold text-gray-900">1 Gallon - Pickup</h3>
               <p class="text-gray-500 text-sm">Ordered on May 3, 2025 at 3:45 PM</p>
             </div>
-            <div class="text-right mt-4 md:mt-0">
+            <div class="text-left md:text-right mt-3 md:mt-0">
               <p class="text-2xl font-extrabold text-gray-400 line-through">₱25</p>
               <p class="text-sm text-red-500">Refunded</p>
             </div>
           </div>
           <div class="border-t pt-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
-            <div class="space-y-1">
+            <div class="space-y-1 mb-3 md:mb-0">
               <p>❌ Cancelled on May 3, 2025</p>
               <p>💬 Reason: Changed mind</p>
             </div>
-            <div class="flex space-x-3 mt-3 md:mt-0">
+            <div class="flex space-x-3 items-end">
               <button class="text-blue-600 hover:underline font-semibold">View Details</button>
               <button class="text-amber-600 hover:underline font-semibold">Reorder</button>
             </div>
@@ -209,20 +214,36 @@
         </div>
       </div>
 
-      <!-- Pagination -->
-      <div class="flex justify-between items-center mt-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
         <p class="text-gray-600 text-sm">Showing 1-4 of 28 orders</p>
-        <div class="flex space-x-2">
-          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Previous</button>
-          <button class="px-3 py-1 bg-blue-600 text-white rounded">1</button>
-          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">2</button>
-          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">3</button>
-          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600">Next</button>
+        <div class="flex space-x-1 sm:space-x-2 w-full sm:w-auto justify-center sm:justify-end overflow-x-auto pb-2 sm:pb-0">
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 whitespace-nowrap text-sm sm:text-base">Previous</button>
+          <button class="px-3 py-1 bg-blue-600 text-white rounded text-sm sm:text-base">1</button>
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 text-sm sm:text-base">2</button>
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 text-sm sm:text-base">3</button>
+          <button class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50 text-gray-600 whitespace-nowrap text-sm sm:text-base">Next</button>
         </div>
       </div>
     </main>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', toggleSidebar);
+      if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+      if (overlay) overlay.addEventListener('click', toggleSidebar);
+    });
+  </script>
   <script src="js/dashboard.js"></script>
 </body>
 </html>

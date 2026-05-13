@@ -9,18 +9,23 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="font-nunito bg-gray-100">
-  <div class="flex h-screen">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-xl hidden md:block">
-      <div class="p-6 border-b">
+  <div class="flex h-screen overflow-hidden">
+    
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden transition-opacity"></div>
+
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col h-full">
+      <div class="p-6 border-b flex justify-between items-center">
         <div class="flex items-center space-x-2">
           <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
             <span class="text-white">💧</span>
           </div>
           <span class="text-xl font-extrabold text-blue-600">TUBIGAN</span>
         </div>
+        <button id="close-sidebar-btn" class="md:hidden text-gray-400 hover:text-blue-600 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
       </div>
-      <nav class="p-4 space-y-2">
+      <nav class="p-4 space-y-2 flex-1 overflow-y-auto">
         <a href="dashboard.html" class="flex items-center space-x-3 p-3 bg-blue-50 text-blue-600 rounded-lg font-semibold">
           <span>📊</span><span>Dashboard</span>
         </a>
@@ -33,60 +38,63 @@
         <a href="customer-profile.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition">
           <span>👤</span><span>Profile</span>
         </a>
-        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition">
+        <a href="index.html" class="flex items-center space-x-3 p-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-lg transition mt-8">
           <span>🚪</span><span>Logout</span>
         </a>
       </nav>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto p-8">
-      <div class="mb-8">
-        <h1 class="text-3xl font-extrabold text-gray-900">Welcome back, Juan!</h1>
-        <p class="text-gray-600 mt-1">Here's your water consumption overview</p>
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 min-w-0">
+      
+      <div class="flex items-center gap-4 mb-6 md:mb-8">
+        <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none flex-shrink-0">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Welcome back, Juan!</h1>
+          <p class="text-sm sm:text-base text-gray-600 mt-1">Here's your water consumption overview</p>
+        </div>
       </div>
 
-      <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white rounded-xl p-6 shadow-md">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-gray-500 text-sm">Current Balance</p>
-              <p class="text-3xl font-extrabold text-blue-600">₱250</p>
+              <p class="text-2xl sm:text-3xl font-extrabold text-blue-600">₱250</p>
             </div>
-            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-              <span class="text-2xl">💰</span>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-xl sm:text-2xl">💰</span>
             </div>
           </div>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-gray-500 text-sm">Gallons This Month</p>
-              <p class="text-3xl font-extrabold text-amber-500">12</p>
+              <p class="text-2xl sm:text-3xl font-extrabold text-amber-500">12</p>
             </div>
-            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
-              <span class="text-2xl">💧</span>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-xl sm:text-2xl">💧</span>
             </div>
           </div>
         </div>
-        <div class="bg-white rounded-xl p-6 shadow-md">
+        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md sm:col-span-2 md:col-span-1">
           <div class="flex items-center justify-between">
             <div>
               <p class="text-gray-500 text-sm">Next Delivery</p>
-              <p class="text-3xl font-extrabold text-green-500">Fri</p>
+              <p class="text-2xl sm:text-3xl font-extrabold text-green-500">Fri</p>
             </div>
-            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-              <span class="text-2xl">📅</span>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-xl sm:text-2xl">📅</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Quick Actions -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <a href="customer-orders.html" class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition flex items-center space-x-4">
-          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+        <a href="customer-orders.html" class="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition flex items-center space-x-4">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
             <span class="text-2xl">📦</span>
           </div>
           <div>
@@ -94,8 +102,8 @@
             <p class="text-sm text-gray-500">View your order history</p>
           </div>
         </a>
-        <a href="payment.html" class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition flex items-center space-x-4">
-          <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+        <a href="payment.html" class="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition flex items-center space-x-4">
+          <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
             <span class="text-2xl">💳</span>
           </div>
           <div>
@@ -103,8 +111,8 @@
             <p class="text-sm text-gray-500">Pay for your orders online</p>
           </div>
         </a>
-        <a href="customer-profile.html" class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition flex items-center space-x-4">
-          <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+        <a href="customer-profile.html" class="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition flex items-center space-x-4 sm:col-span-2 md:col-span-1">
+          <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
             <span class="text-2xl">👤</span>
           </div>
           <div>
@@ -114,39 +122,55 @@
         </a>
       </div>
 
-      <!-- Recent Orders -->
-      <div class="bg-white rounded-xl p-6 shadow-md">
+      <div class="bg-white rounded-xl p-4 sm:p-6 shadow-md overflow-hidden">
         <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-bold text-gray-900">Recent Orders</h2>
+          <h2 class="text-lg sm:text-xl font-bold text-gray-900">Recent Orders</h2>
           <a href="customer-orders.html" class="text-blue-600 hover:underline font-semibold text-sm">View All</a>
         </div>
         <div class="space-y-4">
           <div class="flex items-center justify-between border-b pb-4">
             <div>
-              <p class="font-semibold text-gray-800">3 Gallons - Delivery</p>
-              <p class="text-sm text-gray-500">May 10, 2025</p>
+              <p class="font-semibold text-gray-800 text-sm sm:text-base">3 Gallons - Delivery</p>
+              <p class="text-xs sm:text-sm text-gray-500">May 10, 2026</p>
             </div>
-            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">Delivered</span>
+            <span class="bg-green-100 text-green-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">Delivered</span>
           </div>
           <div class="flex items-center justify-between border-b pb-4">
             <div>
-              <p class="font-semibold text-gray-800">2 Gallons - Pickup</p>
-              <p class="text-sm text-gray-500">May 8, 2025</p>
+              <p class="font-semibold text-gray-800 text-sm sm:text-base">2 Gallons - Pickup</p>
+              <p class="text-xs sm:text-sm text-gray-500">May 8, 2026</p>
             </div>
-            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-semibold">Processing</span>
+            <span class="bg-amber-100 text-amber-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">Processing</span>
           </div>
           <div class="flex items-center justify-between">
             <div>
-              <p class="font-semibold text-gray-800">5 Gallons - Subscription</p>
-              <p class="text-sm text-gray-500">May 5, 2025</p>
+              <p class="font-semibold text-gray-800 text-sm sm:text-base">5 Gallons - Subscription</p>
+              <p class="text-xs sm:text-sm text-gray-500">May 5, 2026</p>
             </div>
-            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Confirmed</span>
+            <span class="bg-blue-100 text-blue-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">Confirmed</span>
           </div>
         </div>
       </div>
     </main>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('mobile-menu-btn');
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+      }
+
+      if (openBtn) openBtn.addEventListener('click', toggleSidebar);
+      if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+      if (overlay) overlay.addEventListener('click', toggleSidebar);
+    });
+  </script>
   <script src="js/dashboard.js"></script>
 </body>
 </html>
